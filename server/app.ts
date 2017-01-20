@@ -37,7 +37,7 @@ passport.use(new LocalStrategy({
                 user = {};
             }
             if (password === user.password) {
-                done(true);
+                return done(true);
             } else {
                 return done(null, false, {massage: 'Wrong data'});
             }
@@ -47,7 +47,7 @@ passport.use(new LocalStrategy({
 
 app.post('/login/test', passport.authenticate('local',
     { failureRedirect: 'http://localhost:4200',
-      successRedirect: 'http://localhost:4200/profile'}));
+      successRedirect: 'http://localhost:4200/'}));
 
 // api routes
 app.use('/api/secure', protectedRouter);
